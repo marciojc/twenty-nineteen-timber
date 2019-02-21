@@ -1,11 +1,10 @@
-<!doctype html>
-<html {{ site.language_attributes }}> <!--<![endif]-->
-  <head>
-    <meta charset="{{ site.charset }}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="profile" href="https://gmpg.org/xfn/11" />
-    {{ function('wp_head') }}
+{% block html_head_container %}
+
+{% include 'html-header.twig' %}
+  {% block head %}
+  {% endblock %}
   </head>
+{% endblock %}
 
   <body class="{{ body_class }}" data-template="base.twig">
     <div id="page" class="site">
