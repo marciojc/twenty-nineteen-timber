@@ -39,7 +39,7 @@ Timber::$autoescape = false;
 class TwentyNineteen extends Timber\Site {
 	/** Add timber support. */
 	public function __construct() {
-		add_action( 'after_setup_theme',          array( $this, 'setup' ) );
+		add_action( 'after_setup_theme',          array( $this, 'theme_supports' ) );
 		add_action( 'widgets_init',               array( $this, 'widgets_init' ) );
 		add_action( 'wp_enqueue_scripts',         array( $this, 'scripts' ),       10 );
 
@@ -57,7 +57,7 @@ class TwentyNineteen extends Timber\Site {
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	public function setup() {
+	public function theme_supports() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
