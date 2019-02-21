@@ -1,0 +1,26 @@
+<!doctype html>
+<html {{ site.language_attributes }}> <!--<![endif]-->
+  <head>
+    <meta charset="{{ site.charset }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="profile" href="https://gmpg.org/xfn/11" />
+    {{ function('wp_head') }}
+  </head>
+
+  <body class="{{ body_class }}" data-template="base.twig">
+    <div id="page" class="site">
+      <div id="content" class="site-content">
+        {% block content %}
+          Sorry, no content
+        {% endblock %}
+      </div><!-- #content -->
+
+      <footer id="colophon" class="site-footer">
+
+      </footer><!-- #colophon -->
+    </div><!-- #page -->
+
+    <?php wp_footer(); ?>
+
+  </body>
+</html>
