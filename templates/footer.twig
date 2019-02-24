@@ -2,15 +2,17 @@
 
 <div class="site-info">
   {% if site.name|length > 0 %}
-    <a class="site-name" href="{{ function('home_url', '/')|esc_url }}" rel="home">{{ site.name }}</a>,
+    <a class="site-name" href="{{ function('home_url', '/')|e('esc_url') }}" rel="home">{{ site.name }}</a>,
   {% endif %}
-  <a href="{{ _e( 'https://wordpress.org/', 'twentynineteen' )|esc_url }}" class="imprint">
-    {{ _e( 'Proudly powered by %s.', 'twentynineteen' )|format('WordPress') }}
+  <a href="{{ __( 'https://wordpress.org/', 'twentynineteen' )|e('esc_url') }}" class="imprint">
+    {{ __( 'Proudly powered by %s.', 'twentynineteen' )|format('WordPress') }}
   </a>
+
   {% if function('function_exists', 'the_privacy_policy_link') %}
     {{ function('the_privacy_policy_link', '', '<span role="separator" aria-hidden="true"></span>') }}
   {% endif %}
-  {% if has_nav_menu('footer') %}
+
+  {% if function('has_nav_menu', 'footer') %}
     <nav class="footer-navigation" aria-label="{{__( 'Footer Menu', 'twentynineteen' )| e('html_attr') }}">
       {{ function('wp_nav_menu', {
         'theme_location' : 'footer',
@@ -19,6 +21,4 @@
       }) }}
     </nav>
   {% endif %}
-
-  {% include "footer/site-info.twig" %}
 </div><!-- .site-info -->
