@@ -1,0 +1,19 @@
+<article id="post-{{ post.ID }}" class="{{ post.post_class }}">
+	{% if not function('twentynineteen_can_show_post_thumbnail', post) %}
+		<header class="entry-header">
+			{% include "header/entry-header.twig" with { post: post } only %}
+		</header><!-- .entry-header -->
+	{% endif %}
+
+	<div class="entry-content">
+		{{ post.content }}
+
+		{{ function('wp_link_pages', {
+				'before' : '<div class="page-links">' . __( 'Pages:', 'twentynineteen' ),
+				'after'  : '</div>',
+			 })
+		}}
+	</div><!-- .entry-content -->
+
+
+</article><!-- #post-## -->

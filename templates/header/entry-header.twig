@@ -1,0 +1,12 @@
+<h1 class="entry-title">{{ post.title }}</h1>
+
+{% if not function('is_page') %}
+	<div class="entry-meta">
+		{{ function('twentynineteen_posted_by') }}
+		{{ function('twentynineteen_posted_on') }}
+
+		<span class="comment-count">
+
+		</span>
+	</div><!-- .meta-info -->
+{% endif %}
