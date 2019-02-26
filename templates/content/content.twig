@@ -1,7 +1,7 @@
 <article id="post-{{ post.id }}" class="{{ post.class }}">
   <header class="entry-header">
     {% if function('is_sticky') and function('is_home') and !function('is_paged') %}
-      <span class="sticky-post">{{ _e( 'Featured', 'post', 'twentynineteen' ) }}</span>
+      <span class="sticky-post">{{ __( 'Featured', 'post', 'twentynineteen' ) }}</span>
     {% endif %}
 
     {% if function('is_singular') %}
