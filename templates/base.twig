@@ -8,6 +8,16 @@
 
   <body class="{{ body_class }}" data-template="base.twig">
     <div id="page" class="site">
+    	<a class="skip-link screen-reader-text" href="#content">
+    		{{ __( 'Skip to content', 'twentynineteen' ) }}
+    	</a>
+
+    	<header id="masthead">
+				<div class="site-branding-container">
+					{% include 'header/site-branding.twig' %}
+				</div><!-- .layout-wrap -->
+    	</header><!-- #masthead -->
+
       <div id="content" class="site-content">
         {% block content %}
           Sorry, no content
