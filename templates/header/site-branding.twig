@@ -1,0 +1,55 @@
+<div class="site-branding">
+	{% if function('has_custom_logo') %}
+		<div class="site-logo">
+			{{ function('has_custom_logo') }}
+		</div>
+	{% endif %}
+
+	{% set blogInfo = function('get_bloginfo', 'name') %}
+
+	{% if blogInfo|length > 0 %}
+		{% if function('is_front_page') and function('is_home') %}
+			<h1 class="site-title">
+				<a href="{{ site.url }}" rel="home">
+					{{ site.name}}
+				</a>
+			</h1>
+		{% else %}
+		    <p class="site-title">
+		    	<a href="{{ site.url }}" rel="home">
+		    		{{ site.name}}
+		    	</a>
+		    </p>
+		{% endif %}
+	{% endif %}
+
+	{% set description = function('get_bloginfo', 'description', 'display') %}
+
+	{% if description or function('is_customize_preview') %}
+		<p class="site-description">
+			{{ description }}
+		</p>
+	{% endif %}
+
+	{% if function('has_nav_menu', 'menu-1') %}
+		<nav id="site-navigation" class="main-navigation" aria-label="{{__( 'Top Menu', 'twentynineteen' )| e('html_attr') }}">
+		  {{ function('wp_nav_menu', {
+		    'theme_location' : 'menu-1',
+		    'menu_class'     : 'main-menu',
+		    'items_wrap'     : '<ul id="%1$s" class="%2$s">%3$s</ul>',
+		  }) }}
+		</nav><!-- #site-navigation -->
+	{% endif %}
+
+	{% if function('has_nav_menu', 'social') %}
+		<nav class="social-navigation" aria-label="{{__( 'Social Links Menu', 'twentynineteen' )| e('html_attr') }}">
+		  {{ function('wp_nav_menu', {
+		    'theme_location' : 'social',
+		    'menu_class'     : 'social-links',
+		    'link_before'    : '<span class="screen-reader-text">',
+		    'link_after'     : '</span>' ~ function('twentynineteen_get_icon_svg', 'link' ),
+		    'depth'          : 1,
+		  }) }}
+		</nav><!-- .social-navigation -->
+	{% endif %}
+</div><!-- .site-branding -->
