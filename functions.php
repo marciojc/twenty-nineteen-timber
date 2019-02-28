@@ -259,6 +259,9 @@ class TwentyNineteen extends Timber\Site {
 	public function add_to_context( $context ) {
 		$context['menu'] = new Timber\Menu();
 		$context['site'] = $this;
+		$context['header_class'] = is_singular() && twentynineteen_can_show_post_thumbnail()
+			? 'site-header featured-image'
+			: 'site-header';
 		return $context;
 	}
 }
