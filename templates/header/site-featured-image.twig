@@ -5,17 +5,15 @@
 		{% if not function('is_page') and function('twentynineteen_can_show_post_thumbnail') %}
 			{% set discussion = function('twentynineteen_get_discussion_data') %}
 		{% else %}
-		  {% set discussion = null %}
+			{% set discussion = null %}
 		{% endif %}
 		{% set classes = 'entry-header' %}
-
 		{% if not discussion|length and function('absint', discussion.responses) > 0 %}
 			{% set classes = 'entry-header has-discussion' %}
 		{% endif %}
-
 		<div class="{{ classes }}">
 			{% include 'header/entry-header.twig' %}
-		</div><!-- .entry-header -->
-		{{ function('rewind_posts') }}
-	</div>
-{% endif %}
+			</div><!-- .entry-header -->
+			{{ function('rewind_posts') }}
+		</div>
+	{% endif %}
