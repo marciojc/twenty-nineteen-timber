@@ -4,7 +4,7 @@
   <section id="primary" class="content-area">
     <main id="main" class="site-main">
       {% for post in posts %}
-        {% include 'content/content-content.twig' with { post: post } only %}
+        {% include 'content/content.twig' with { post: post } only %}
       {% else %}
         {% include 'content/content-none.twig' %}
       {% endfor %}
