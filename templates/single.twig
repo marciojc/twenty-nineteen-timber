@@ -1,0 +1,34 @@
+{% extends "base.twig" %}
+
+{% block content %}
+  <section id="primary" class="content-area">
+    <main id="main" class="site-main">
+      {% for post in posts %}
+        {% include 'content/content-single.twig' with { post: post } only %}
+      {% endfor %}
+
+      {% if function('is_singular', 'attachment') %}
+		    {{
+		    	function('the_post_navigation',
+						{
+							'prev_text' : __('<span class="meta-nav">Published in</span><span class="post-title">%s</span>', 'twentynineteen' )|format(post.title),
+						}
+					)
+				}}
+			{% elseif function('is_singular', 'post') %}
+		    {{
+		    	function('the_post_navigation',
+						{
+							'next_text' : '<span class="meta-nav" aria-hidden="true">' ~ __( 'Next Post', 'twentynineteen' ) ~ '</span> ' ~ '<span class="screen-reader-text">' ~ __( 'Next post:', 'twentynineteen' ) ~ '</span> <br/>' ~ '<span class="post-title">%s</span>'|format(post.title),
+							'prev_text' => '<span class="meta-nav" aria-hidden="true">' ~ __( 'Previous Post', 'twentynineteen' ) ~ '</span> ' ~ '<span class="screen-reader-text">' ~ __( 'Previous post:', 'twentynineteen' ) ~ '</span> <br/>' ~'<span class="post-title">%s</span>'|format(post.title),
+						}
+					)
+				}}
+      {% endif %}
+
+      {% if function('comments_open') or post.get_comment_count %}
+  			{% include 'comments.twig' %}
+      {% endif %}
+    </main>
+  </section>
+{% endblock %}
