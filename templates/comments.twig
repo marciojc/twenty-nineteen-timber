@@ -54,17 +54,30 @@
 			</ol><!-- .comment-list -->
 
 			{% if comments_number %}
+				{% set prev_icon = function('twentynineteen_get_icon_svg', 'chevron_left', 22) %}
+				{% set next_icon = function('twentynineteen_get_icon_svg', 'chevron_right', 22) %}
+				{% set comments_text = __( 'Comments', 'twentynineteen' ) %}
 				{{
 					function('the_comments_pagination',
 						{
-							'prev_text' : '',
-							'next_text' : '',
+							'prev_text' : prev_icon ~ '<span class="nav-prev-text"><span class="primary-text">' ~ __( 'Previous', 'twentynineteen' ) ~ '</span> <span class="secondary-text">' ~ comments_text ~ '</span></span>',
+							'next_text' : '<span class="nav-next-text"><span class="primary-text">' ~ __( 'Next', 'twentynineteen' ) ~ '</span> <span class="secondary-text">' ~ comments_text ~ '</span></span> ' ~ next_icon,
 						}
 					)
 				}}
 			{% endif %}
 
-			{% if not function('comments_open') %}
+			{% set comment_order = function('get_option', 'comment_order', 'asc') %}
+
+			{% if comments_open and comment_order == 'asc' %}
+				<div class="comment-form-flex">
+					<span class="screen-reader-text">{{ __( 'Leave a comment', 'twentynineteen' ) }}</span>
+					{{ function('twentynineteen_comment_form', 'asc') }}
+					<h2 class="comments-title" aria-hidden="true">{{ __( 'Leave a comment', 'twentynineteen' ) }}</h2>
+				</div>
+			{% endif %}
+
+			{% if not comments_open %}
 				<p class="no-comments">
 					{{ __( 'Comments are closed.', 'twentynineteen' ) }}
 				</p>
