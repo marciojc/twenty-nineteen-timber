@@ -1,0 +1,21 @@
+<article id="post-{{ post.id }}" class="{{ post.post_class }}">
+	<header class="entry-header">
+		{% if function('is_sticky') and function('is_home') and not function('is_paged') %}
+			<span class="sticky-post">{{ __( 'Featured', 'post', 'twentynineteen' ) }}</span>
+		{% endif %}
+
+		<h2 class="entry-title">
+			<a href="{{ post.link }}" rel="bookmark">{{ post.title }}</a>
+		</h2>
+	</header><!-- .entry-header -->
+
+	{{ function('twentynineteen_post_thumbnail') }}
+
+	<div class="entry-content">
+		{{ post.excerpt }}
+	</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		{{ function('twentynineteen_entry_footer') }}
+	</footer><!-- .entry-footer -->
+</article><!-- #post-${ID} -->
