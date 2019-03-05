@@ -20,11 +20,11 @@ $context = Timber::get_context();
 
 $context['title'] = 'Archive';
 if ( is_day() ) {
-	$context['title'] = 'Archive: '.get_the_date( 'D M Y' );
+	$context['title'] = 'Archive: ' . get_the_date( 'D M Y' );
 } else if ( is_month() ) {
-	$context['title'] = 'Archive: '.get_the_date( 'M Y' );
+	$context['title'] = 'Archive: ' . get_the_date( 'M Y' );
 } else if ( is_year() ) {
-	$context['title'] = 'Archive: '.get_the_date( 'Y' );
+	$context['title'] = 'Archive: ' . get_the_date( 'Y' );
 } else if ( is_tag() ) {
 	$context['title'] = single_tag_title( '', false );
 } else if ( is_category() ) {
@@ -35,7 +35,6 @@ if ( is_day() ) {
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
 
-$context['posts'] = Timber::get_posts();
-$context['sidebar'] = Timber::get_sidebar('sidebar.php');
+$context['posts'] = new Timber\PostQuery();
 
 Timber::render( $templates, $context );
