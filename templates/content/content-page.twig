@@ -15,5 +15,11 @@
 		}}
 	</div><!-- .entry-content -->
 
+	{% if function('get_edit_post_link') %}
+		<footer class="entry-footer">
+			{% set edit = __( 'Edit <span class="screen-reader-text">%s</span>', 'twentynineteen' )|format(post.title) %}
+			{{ function('edit_post_link', edit, '<span class="edit-link">', '</span>') }}
+		</footer><!-- .entry-footer -->
+	{% endif %}
 
 </article><!-- #post-## -->
