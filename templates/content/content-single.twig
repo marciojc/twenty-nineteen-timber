@@ -1,0 +1,31 @@
+<article id="post-{{ post.ID }}" class="{{ post.post_class }}">
+	{% if not function('twentynineteen_can_show_post_thumbnail', post) %}
+		<header class="entry-header">
+			{% include "header/entry-header.twig" with { post: post } only %}
+		</header><!-- .entry-header -->
+	{% endif %}
+
+	<div class="entry-content">
+		{{
+		  the_content(
+		    __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'twentyseventeen' )|format(post.title),
+		    post.ID
+		  )
+		}}
+
+		{{ function('wp_link_pages', {
+		    'before' : '<div class="page-links">' . __( 'Pages:', 'twentynineteen' ),
+		    'after'  : '</div>',
+		   })
+		}}
+	</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		{{ function('twentynineteen_entry_footer') }}
+	</footer><!-- .entry-footer -->
+
+	{% if not function('is_singular', 'attachment') %}
+		{% include 'post/author-bio.twig' %}
+	{% endif %}
+
+</article><!-- #post-${ID} -->
