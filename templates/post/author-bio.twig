@@ -1,0 +1,15 @@
+{% if function('get_the_author_meta', 'description') %}
+	<div class="author-bio">
+		<h2 class="author-title">
+			<span class="author-heading">
+				{{ __( 'Published by %s', 'twentynineteen' )|format(post.author) }}
+			</span>
+		</h2>
+		<p class="author-description">
+			{{ function('the_author_meta', 'description') }}
+			<a class="author-link" href="" rel="author">
+				{{ _e( 'View more posts', 'twentynineteen' ) }}
+			</a>
+		</p><!-- .author-description -->
+	</div><!-- .author-bio -->
+{% endif %}
