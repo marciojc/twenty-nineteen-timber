@@ -5,11 +5,15 @@
 
   <div class="page-content">
     {% if function('is_home') and user.can('publish_posts') %}
-
+		  <p>{{ __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'twentynineteen' )|format(function('admin_url', 'post-new.php')) }}</p>
     {% elseif function('is_search') %}
       <p>{{ __( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'twentynineteen' ) }}</p>
+
+      {{ function('get_search_form') }}
     {% else %}
       <p>{{ __( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'twentynineteen' ) }}</p>
+
+      {{ function('get_search_form') }}
     {% endif %}
     <?php
   </div><!-- .page-content -->
