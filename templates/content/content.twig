@@ -1,13 +1,13 @@
 <article id="post-{{ post.id }}" class="{{ post.class }}">
   <header class="entry-header">
-    {% if function('is_sticky') and function('is_home') and !function('is_paged') %}
+    {% if function('is_sticky') and function('is_home') and not function('is_paged') %}
       <span class="sticky-post">{{ __( 'Featured', 'post', 'twentynineteen' ) }}</span>
     {% endif %}
 
     {% if function('is_singular') %}
       <h1 class="entry-title">{{ post.title }}</h1>
     {% else %}
-      <h2 class="entry-title"><a href="{{ post.link|esc_url }}" rel="bookmark">{{ post.title }}</a></h2>
+      <h2 class="entry-title"><a href="{{ post.link|e('esc_url') }}" rel="bookmark">{{ post.title }}</a></h2>
     {% endif %}
   </header><!-- .entry-header -->
 
@@ -15,7 +15,7 @@
 
   <div class="entry-content">
     {{
-      the_content(
+      function('the_content',
         __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'twentynineteen' )|format(post.title)
       )
     }}
