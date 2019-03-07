@@ -1,0 +1,21 @@
+<section id="primary" class="content-area">
+	<main id="main" class="site-main">
+		{% if posts %}
+
+			<header class="page-header">
+				<h1 class="page-title">
+					{{ __( 'Search results for:', 'twentynineteen' ) }}
+				</h1>
+				<div class="page-description">{{ function('get_search_query') }}</div>
+			</header><!-- .page-header -->
+
+			{% for post in posts %}
+				{% include "content/content-excerpt.twig" with { post: post } only %}
+			{% endfor %}
+
+			{{ function('twentynineteen_the_posts_navigation') }}
+		{% else %}
+			{% include "content/content-none.twig" with { post: post } only %}
+		{% endif %}
+	</main><!-- #main -->
+</section><!-- #primary -->
