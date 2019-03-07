@@ -1,68 +1,72 @@
-<section id="primary" class="content-area">
-	<main id="main" class="site-main">
+{% extends "base.twig" %}
 
-		{% for post in posts %}
-			<article id="post-{{ post.id }}" class="{{ post.post_class }}">
-				<header class="entry-header">
-					<h1 class="entry-title">{{ post.titel }}</h1>
-				</header><!-- .entry-header -->
+{% block content %}
+	<section id="primary" class="content-area">
+		<main id="main" class="site-main">
 
-				<div class="entry-content">
+			{% for post in posts %}
+				<article id="post-{{ post.id }}" class="{{ post.post_class }}">
+					<header class="entry-header">
+						<h1 class="entry-title">{{ post.titel }}</h1>
+					</header><!-- .entry-header -->
 
-					<figure class="entry-attachment wp-block-image">
-						{% set imageSize = function('apply_filters', 'twentynineteen_attachment_size', 'full' ) %}
+					<div class="entry-content">
 
-						{{ function('wp_get_attachment_image', post.id, imageSize) }}
+						<figure class="entry-attachment wp-block-image">
+							{% set imageSize = function('apply_filters', 'twentynineteen_attachment_size', 'full' ) %}
 
-						<figcaption class="wp-caption-text"><?php the_excerpt(); ?></figcaption>
+							{{ function('wp_get_attachment_image', post.id, imageSize) }}
 
-					</figure><!-- .entry-attachment -->
+							<figcaption class="wp-caption-text"><?php the_excerpt(); ?></figcaption>
 
-					{{ post.content }}
+						</figure><!-- .entry-attachment -->
 
-					{{ function('wp_link_pages', {
-					    'before'      : '<div class="page-links"><span class="page-links-title">' ~ __( 'Pages:', 'twentynineteen' ) ~ '</span>',
-					    'after'       : '</div>',
-					    'link_before' : '<span>',
-					    'link_after'  : '</span>',
-					    'pagelink'    : '<span class="screen-reader-text">' ~ __( 'Page', 'twentynineteen' ) ~ ' </span>%',
-					    'separator'   : '<span class="screen-reader-text">, </span>',
-					   }, post.id)
-					}}
-				</div><!-- .entry-content -->
+						{{ post.content }}
 
-				<footer class="entry-footer">
-				<?php
-					// Retrieve attachment metadata.
-					$metadata = wp_get_attachment_metadata();
-				if ( $metadata ) {
-					printf(
-						'<span class="full-size-link"><span class="screen-reader-text">%1$s</span><a href="%2$s">%3$s &times; %4$s</a></span>',
-						_x( 'Full size', 'Used before full size attachment link.', 'twentynineteen' ),
-						esc_url( wp_get_attachment_url() ),
-						absint( $metadata['width'] ),
-						absint( $metadata['height'] )
-					);
-				}
-				?>
+						{{ function('wp_link_pages', {
+						    'before'      : '<div class="page-links"><span class="page-links-title">' ~ __( 'Pages:', 'twentynineteen' ) ~ '</span>',
+						    'after'       : '</div>',
+						    'link_before' : '<span>',
+						    'link_after'  : '</span>',
+						    'pagelink'    : '<span class="screen-reader-text">' ~ __( 'Page', 'twentynineteen' ) ~ ' </span>%',
+						    'separator'   : '<span class="screen-reader-text">, </span>',
+						   }, post.id)
+						}}
+					</div><!-- .entry-content -->
 
-					{{ function('twentynineteen_entry_footer') }}
-
-				</footer><!-- .entry-footer -->
-			</article><!-- #post-## -->
-
-	    {{
-	    	function('the_post_navigation',
-					{
-						'prev_text' : __('<span class="meta-nav">Published in</span><span class="post-title">%s</span>', 'twentynineteen' )|format(__('Parent post link', 'twentynineteen' )),
+					<footer class="entry-footer">
+					<?php
+						// Retrieve attachment metadata.
+						$metadata = wp_get_attachment_metadata();
+					if ( $metadata ) {
+						printf(
+							'<span class="full-size-link"><span class="screen-reader-text">%1$s</span><a href="%2$s">%3$s &times; %4$s</a></span>',
+							_x( 'Full size', 'Used before full size attachment link.', 'twentynineteen' ),
+							esc_url( wp_get_attachment_url() ),
+							absint( $metadata['width'] ),
+							absint( $metadata['height'] )
+						);
 					}
-				)
-			}}
+					?>
 
-	    {% if function('comments_open') or post.get_comment_count %}
-				{% include 'comments.twig' %}
-	    {% endif %}
-		{% endfor %}
+						{{ function('twentynineteen_entry_footer') }}
 
-	</main><!-- .site-main -->
-</section><!-- .content-area -->
+					</footer><!-- .entry-footer -->
+				</article><!-- #post-## -->
+
+		    {{
+		    	function('the_post_navigation',
+						{
+							'prev_text' : __('<span class="meta-nav">Published in</span><span class="post-title">%s</span>', 'twentynineteen' )|format(__('Parent post link', 'twentynineteen' )),
+						}
+					)
+				}}
+
+		    {% if function('comments_open') or post.get_comment_count %}
+					{% include 'comments.twig' %}
+		    {% endif %}
+			{% endfor %}
+
+		</main><!-- .site-main -->
+	</section><!-- .content-area -->
+{% endblock %}
