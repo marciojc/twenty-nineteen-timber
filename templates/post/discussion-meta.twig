@@ -1,0 +1,18 @@
+{% set discussion = function('twentynineteen_get_discussion_data') %}
+{% set hasResponses = discussion.responses > 0 %}
+
+{% if hasResponses %}
+	{% set metaLabel = __( '%d Comment', '%d Comments', $discussion->responses, 'twentynineteen' )|format(discussion.responses) %}
+{% else %}
+	{% set metaLabel = __( 'No comments', 'twentynineteen' ) %}
+{% endif %}
+
+<div class="discussion-meta">
+	{% if hasResponses %}
+		{{ function('twentynineteen_discussion_avatars_list', discussion.authors) }}
+	{% endif %}
+	<p class="discussion-meta-info">
+		{{ function('twentynineteen_get_icon_svg', 'comment', 24) }}
+		<span>{{ metaLabel|e('esc_html')}}</span>
+	</p>
+</div><!-- .discussion-meta -->
