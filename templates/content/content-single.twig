@@ -14,7 +14,7 @@
 		}}
 
 		{{ function('wp_link_pages', {
-		    'before' : '<div class="page-links">' . __( 'Pages:', 'twentynineteen' ),
+		    'before' : '<div class="page-links">' ~ __( 'Pages:', 'twentynineteen' ),
 		    'after'  : '</div>',
 		   }, post.ID)
 		}}

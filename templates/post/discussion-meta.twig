@@ -2,7 +2,7 @@
 {% set hasResponses = discussion.responses > 0 %}
 
 {% if hasResponses %}
-	{% set metaLabel = __( '%d Comment', '%d Comments', $discussion->responses, 'twentynineteen' )|format(discussion.responses) %}
+	{% set metaLabel = __( '%d Comment', '%d Comments', discussion.responses, 'twentynineteen' )|format(discussion.responses) %}
 {% else %}
 	{% set metaLabel = __( 'No comments', 'twentynineteen' ) %}
 {% endif %}
