@@ -43,7 +43,7 @@ class TwentyNineteen extends Timber\Site {
 		add_action( 'widgets_init',               array( $this, 'widgets_init' ) );
 		add_action( 'wp_enqueue_scripts',         array( $this, 'scripts' ), 10 );
 
-		add_filter( 'timber_context', array( $this, 'add_to_context' ) );
+		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
 		add_action( 'init', array( $this, 'register_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
 
