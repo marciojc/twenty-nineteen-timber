@@ -44,6 +44,7 @@ class TwentyNineteen extends Timber\Site {
 		add_action( 'wp_enqueue_scripts',         array( $this, 'scripts' ), 10 );
 
 		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
+		add_filter( 'timber/twig', array( $this, 'add_to_twig' ) );
 		add_action( 'init', array( $this, 'register_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies' ) );
 
@@ -263,6 +264,19 @@ class TwentyNineteen extends Timber\Site {
 			? 'site-header featured-image'
 			: 'site-header';
 		return $context;
+	}
+
+	public function add_to_twig( $twig ) {
+		$twig->addExtension( new Twig_Extension_StringLoader() );
+
+		$twig->addFunction(
+			new Timber\Twig_Function(
+				'twentynineteen_can_show_post_thumbnail',
+				'twentynineteen_can_show_post_thumbnail'
+			)
+		);
+
+		return $twig;
 	}
 }
 
