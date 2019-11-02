@@ -1,8 +1,8 @@
-{% if function('is_singular') and function('twentynineteen_can_show_post_thumbnail') %}
+{% if function('is_singular') and twentynineteen_can_show_post_thumbnail() %}
 	<div class="site-featured-image">
 		{{ function('twentynineteen_post_thumbnail') }}
 		{{ function('the_post') }}
-		{% if not function('is_page') and function('twentynineteen_can_show_post_thumbnail') %}
+		{% if not function('is_page') and twentynineteen_can_show_post_thumbnail() %}
 			{% set discussion = function('twentynineteen_get_discussion_data') %}
 		{% else %}
 			{% set discussion = null %}
