@@ -1,5 +1,5 @@
 <article id="post-{{ post.ID }}" class="{{ post.post_class }}">
-	{% if not function('twentynineteen_can_show_post_thumbnail', post) %}
+	{% if not twentynineteen_can_show_post_thumbnail() %}
 		<header class="entry-header">
 			{% include "header/entry-header.twig" with { post: post } only %}
 		</header><!-- .entry-header -->
